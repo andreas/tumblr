@@ -1,6 +1,8 @@
 require 'rubygems' 
 gem 'httparty', "<= 4.3"
+gem 'httparty-icebox'
 require 'httparty'
+require 'httparty-icebox'
 
 require 'tumblr/user'
 require 'tumblr/request'
@@ -12,6 +14,11 @@ class Tumblr
     
     def blog=(_blog)
       @blog = (_blog =~ /\./) ? _blog : "#{_blog}.tumblr.com"
+    end
+
+    def cache(*args)
+      Request.send(:include, HTTParty::Icebox)
+      Request.cache(*args)
     end
   end
   

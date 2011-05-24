@@ -82,6 +82,14 @@ Just provide the user object and the +post_id+ of the post you'd like to destroy
 
   Tumblr::Post.destroy(user, :post_id => 12345)
 
+== Caching
+
+You can cache responses from Tumblr to speed up processing or avoid downtime when Tumblr is down. Caching is provided by {HTTParty::Icebox}[https://github.com/sachse/httparty-icebox]. To enable caching:
+  
+  Tumblr.caching :store => :memory, :timeout => 60
+
+You can cache to filesystem, memory and more. Read more about {parameters for the cache-method}[https://github.com/sachse/httparty-icebox/blob/master/lib/httparty-icebox.rb#L37].
+
 == Docs
 
 http://rdoc.info/projects/jeffkreeftmeijer/tumblr
